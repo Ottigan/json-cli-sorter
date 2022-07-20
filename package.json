@@ -1,7 +1,16 @@
 {
   "name": "json-cli-sorter",
-  "version": "1.0.2",
-  "description": "CLI tool to sort nested .json files",
+  "version": "1.0.3",
+  "description": "CLI tool to sort nested JSON files",
+  "keywords": [
+    "json",
+    "cli",
+    "sort"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ottigan/json-cli-sorter"
+  },
   "bin": {
     "json-cli-sorter": "bin/index.js"
   },
@@ -10,7 +19,7 @@
     "debug": "npx tsc && node --inspect=6001 bin/index.js"
   },
   "author": "Ottigan",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
