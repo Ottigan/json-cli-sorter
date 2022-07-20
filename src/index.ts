@@ -1,22 +1,12 @@
 #! /usr/bin/env node
 
 import { stderr } from 'process';
-
-const fs = require('fs');
+import fs from 'fs';
 
 type Data = any[] | {[index: string]: any};
 
 // * Exampole:
-// * node ./json-sorter.js ./client/src/middleware/locales/lv.json
-const path = process.argv[2];
-
-if (!path) {
-  stderr.write('file not specified\nexiting with code 1\n');
-  process.exit(1);
-}
-
-const rawdata = fs.readFileSync(path);
-const parsedData = JSON.parse(rawdata);
+// * npx json-cli-sorter ./client/src/middleware/locales/lv.json
 
 function sort(data:Data) {
   if (Array.isArray(data)) {
@@ -40,10 +30,18 @@ function sort(data:Data) {
   return sorted;
 }
 
-if (path && typeof parsedData === 'object') {
+try {
+  const path = process.argv[2];
+  if (!path) throw Error('File not specified');
+
+  const rawdata = fs.readFileSync(path, { encoding: 'utf8' });
+  const parsedData = JSON.parse(rawdata);
   const sorted = sort(parsedData);
 
   fs.writeFileSync(path, JSON.stringify(sorted, null, 2));
-} else {
+} catch (e) {
+  const suffix = 'Exiting with code 1\n';
+  const message = e instanceof Error ? `${e.message}\n${suffix}` : `Something went terribly wrong...\n${suffix}`;
+  stderr.write(message);
   process.exit(1);
 }
