@@ -1,6 +1,6 @@
 {
   "name": "json-cli-sorter",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "CLI tool to sort nested JSON files",
   "keywords": [
     "json",
@@ -11,6 +11,8 @@
     "type": "git",
     "url": "https://github.com/Ottigan/json-cli-sorter"
   },
+  "license": "MIT",
+  "author": "Ottigan",
   "bin": {
     "json-cli-sorter": "bin/index.js"
   },
@@ -18,8 +20,6 @@
     "build": "rimraf rm -r bin/* && npx tsc && rimraf rm bin/index.js.map",
     "debug": "npx tsc && node --inspect=6001 bin/index.js"
   },
-  "author": "Ottigan",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",

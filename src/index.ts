@@ -10,7 +10,12 @@ type Data = any[] | {[index: string]: any};
 
 function sort(data:Data) {
   if (Array.isArray(data)) {
-    return data.sort((a, b) => a.localeCompare(b));
+    return data.sort((a, b) => {
+      const parsedA = JSON.stringify(a);
+      const parsedB = JSON.stringify(b);
+
+      return parsedA.localeCompare(parsedB);
+    });
   }
 
   const sorted: Data = {};
